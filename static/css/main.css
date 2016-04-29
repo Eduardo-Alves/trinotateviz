@@ -1,0 +1,35 @@
+.grid {
+  width: 100%;
+  height: 800px;
+}
+.ui-grid-cell-contents {
+  padding: 1px 1px;
+
+}
+
+.grid .ui-grid-row,
+.grid .ui-grid-cell,
+.grid .ui-grid-cell .ui-grid-vertical-bar {
+
+  height: 16px !important;
+  font-size: 10px;
+  line-height: 14px;
+}
+.ui-grid-render-container-body .ui-grid-header-cell,
+.ui-grid-render-container-left .ui-grid-header-cell,
+.ui-grid-header-cell {
+  height:16px;
+  font-size: 10px;
+}
+.ui-grid-filter-container {
+  padding: 1px 3px;
+}
+
+
+.ui-grid .ui-grid-render-container-body .ui-grid-viewport {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    
+}
+
+
