@@ -16,11 +16,27 @@
 <div ng-controller="MainCtrl">
 
  <div class="control-group">
+         <input  ng-model='filterValue'/><button ng-click='filter()'>Filter</button>
+
+      </div>
+  <div ui-grid="gridOptions" ui-grid-pagination ui-grid-expandable class="grid"></div>
+</div>
+
+<%doc>
+<div ng-controller="SecondCtrl">
+
+ <div class="control-group">
          <input ng-model='filterValue'/><button ng-click='filter()'>Filter</button>
 
       </div>
   <div ui-grid="gridOptions" ui-grid-pagination ui-grid-expandable class="grid"></div>
 </div>
+</%doc>
+
+
+
+
+
  <script type="text/javascript">
             var hdaId   = '${trans.security.encode_id( hda.id )}'
  </script>
