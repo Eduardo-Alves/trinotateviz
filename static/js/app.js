@@ -99,10 +99,7 @@ app.service('transcriptome', [
      });
 
      
-     $http.get(trans_url)
-     .success (function(response){ 
-        transdata = [].concat.apply([], response.data);
-     });
+     trans_promise=$http.get(trans_url);
     $http.get(orf_url)
      .success (function(response){ 
         orfdata = [].concat.apply([], response.data);
@@ -111,10 +108,11 @@ app.service('transcriptome', [
      .success (function(response){ 
         pfamdata = [].concat.apply([], response.data);
      });
-          $http.get(diff_url)
+     $http.get(diff_url)
      .success (function(response){ 
         diffdata = [].concat.apply([], response.data);
      });
+     trans_promise.then(function(response){   transdata = [].concat.apply([], response.data);
      $http.get(gene_url)
      .success (function(response){ 
         mygridOptions.data = [].concat.apply([], response.data);
@@ -149,7 +147,8 @@ app.service('transcriptome', [
     //         }
         }
         
-     });    
+     });//end get gene_url
+});//end promise    
   };
  // getPage();
   return {filter: (function() {
