@@ -20,7 +20,7 @@ app.service('transcriptome', [
     pfamjoin: 'transcript%20t,%20orf%20o,hmmerdbase%20h%20',
     genewhere: 'where%20e.feature_name=t.gene_id%20',
     transwhere: 'where%20t.transcript_id=o.transcript_id%20and%20x.trinityid=t.transcript_id%20',
-    totwhere: 'where%20t.transcript_id=o.transcript_id%20and%20x.trinityid=t.gene_id%20and%20h.queryprotid=o.orf_id%20and%20d.feature_name=t.gene_id%20',
+    totwhere: 'where%20t.transcript_id=o.transcript_id%20and%20x.trinityid=t.transcript_id%20and%20h.queryprotid=o.orf_id%20and%20d.feature_name=t.gene_id%20',
     orfwhere: 'where%20t.transcript_id=o.transcript_id%20and%20x.Trinityid=o.orf_id%20',
     pfamwhere: 'where%20t.transcript_id=o.transcript_id%20and%20h.queryprotid=o.orf_id%20',
     group: 'group%20by%20gene_id%20',
@@ -37,7 +37,7 @@ app.service('transcriptome', [
     mygridOptions = {
     enableHorizontalScrollbar: 0,
     enableVerticalScrollbar: 1,
-    expandableRowTemplate: '/plugins/visualizations/trinotate/static/GridTemplate.html',
+    expandableRowTemplate: '/plugins/visualizations/trinotateviz/static/GridTemplate.html',
     expandableRowHeight: 180,
     //subGridVariable will be available in subGrid scope
     expandableRowScope: {
