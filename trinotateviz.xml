@@ -6,7 +6,7 @@
         <exit_code range="1:" />
     </stdio>
     <command><![CDATA[
-        cp tool_data/trinotateviz.html 
+    myscript.py $input1 $html_file $html_file.files_path
     ]]></command>
     <inputs>
         <param type="data" name="input" format="sqlite" />
@@ -14,7 +14,22 @@
     <outputs>
         <data name="output" format="html" />
     </outputs>
+
+    <tests>
+      <test>
+    <param name="transcriptome" ftype="sqlite" value="myTrinotate.sqlite.gz" />
+    <output name="grid" file="trinotateviz.html" />
+  </test>
+    </tests>
     <help><![CDATA[
-        TODO: Fill in help.
+        Displays a searchable grid for Trinotate SQLilte DB
     ]]></help>
+    <citations>
+          <citation type="bibtex">
+  @misc{renameTODO,
+    author = {LastTODO, FirstTODO},
+    year = {TODO},
+    title = {TODO},
+    url = {https://trinotate.github.io/},}</citation>
+</citations>
 </tool>
