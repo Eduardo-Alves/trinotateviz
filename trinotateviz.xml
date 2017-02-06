@@ -1,0 +1,20 @@
+<tool id="trinotateviz" name="trinotate Viz" version="1.0">
+    <description>Grid visualization for Trinotate SQLite DB</description>
+    <requirements>
+    </requirements>
+    <stdio>
+        <exit_code range="1:" />
+    </stdio>
+    <command><![CDATA[
+        cp tool_data/trinotateviz.html 
+    ]]></command>
+    <inputs>
+        <param type="data" name="input" format="sqlite" />
+    </inputs>
+    <outputs>
+        <data name="output" format="html" />
+    </outputs>
+    <help><![CDATA[
+        TODO: Fill in help.
+    ]]></help>
+</tool>
