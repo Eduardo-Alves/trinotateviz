@@ -6,10 +6,10 @@
         <exit_code range="1:" />
     </stdio>
     <command><![CDATA[
-    myscript.py $input1 $html_file $html_file.files_path
+    cp $__tool_directory__/trinotateviz.html $output
     ]]></command>
     <inputs>
-        <param type="data" name="input" format="sqlite" />
+        <param name="db" type="data" format="sqlite" />
     </inputs>
     <outputs>
         <data name="output" format="html" />
@@ -17,8 +17,8 @@
 
     <tests>
       <test>
-    <param name="transcriptome" ftype="sqlite" value="myTrinotate.sqlite.gz" />
-    <output name="grid" file="trinotateviz.html" />
+          <param name="db" type="data" format="sqlite" value="Trinotate_no_uniprot.sqlite" />
+    <output name="output" file="trinotateviz.html" />
   </test>
     </tests>
     <help><![CDATA[
