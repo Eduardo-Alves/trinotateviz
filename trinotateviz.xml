@@ -6,7 +6,7 @@
         <exit_code range="1:" />
     </stdio>
     <command><![CDATA[
-    cp $__tool_directory__/trinotateviz.html $output
+    cp $__tool_directory__/trinotateviz.sh $db $__tool_directory__ $output
     ]]></command>
     <inputs>
         <param name="db" type="data" format="sqlite" />
@@ -17,7 +17,7 @@
 
     <tests>
       <test>
-          <param name="db" type="data" format="sqlite" value="Trinotate_no_uniprot.sqlite" />
+          <param name="db"  value="Trinotate_no_uniprot.sqlite" />
     <output name="output" file="trinotateviz.html" />
   </test>
     </tests>
