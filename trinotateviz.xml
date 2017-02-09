@@ -6,7 +6,11 @@
         <exit_code range="1:" />
     </stdio>
     <command><![CDATA[
-    cp $__tool_directory__/trinotateviz.sh $db $__tool_directory__ $output
+        sed "s@input_db@$db@" $__tool_directory__/trinotateviz.html > $output;
+        mkdir ${output.files_path};
+        cp $__tool_directory__/static/js/app.js ${output.files_path};
+        cp $__tool_directory__/static/css/main.css ${output.files_path};
+        cp $__tool_directory__/static/GridTemplate.html ${output.files_path}
     ]]></command>
     <inputs>
         <param name="db" type="data" format="sqlite" />
@@ -18,7 +22,7 @@
     <tests>
       <test>
           <param name="db"  value="Trinotate_no_uniprot.sqlite" />
-    <output name="output" file="trinotateviz.html" />
+    <output name="output" file="trinotateviz.html" lines_diff="2" />
   </test>
     </tests>
     <help><![CDATA[

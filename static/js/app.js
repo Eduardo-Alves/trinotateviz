@@ -33,11 +33,11 @@ app.service('transcriptome', [
     transsel: 'select%20distinct%20t.gene_id%20as%20gene_id,t.transcript_id%20as%20trans_id,length(sequence)%20as%20t_len,x.FullAccession%20as%20x_hit,abs(x.queryend-x.querystart)/o.length%20as%20x_qcov,x.percentidentity%20as%20x_id,x.evalue%20as%20x_eval,x.databasesource%20as%20x_source%20from%20',
     orfsel:   'select%20distinct%20t.gene_id%20as%20gene_id,o.orf_id%20,o.rend,o.lend,o.length%20as%20o_len,o.strand,x.FullAccession%20as%20p_hit,3*abs(x.queryend-x.querystart)/o.length%20as%20p_qcov,x.percentidentity%20as%20p_id,x.evalue%20as%20p_eval,x.databasesource%20as%20p_source%20from%20',
   }
-    
+
     mygridOptions = {
     enableHorizontalScrollbar: 0,
     enableVerticalScrollbar: 1,
-    expandableRowTemplate: '/plugins/visualizations/trinotateviz/static/GridTemplate.html',
+    expandableRowTemplate: 'GridTemplate.html',
     expandableRowHeight: 180,
     //subGridVariable will be available in subGrid scope
     expandableRowScope: {
@@ -55,7 +55,7 @@ app.service('transcriptome', [
     ],
     onRegisterApi: function(gridApi) {
       this.gridApi = gridApi;
-/*  
+/*
       $scope.gridApi.core.on.sortChanged($scope, function(grid, sortColumns) {
         if (sortColumns.length == 0) {
           paginationOptions.sort = null;
@@ -64,7 +64,7 @@ app.service('transcriptome', [
         }
         getPage();
       });
-*/      
+*/
       gridApi.pagination.on.paginationChanged(this, function (newPage, pageSize) {
         paginationOptions.pageNumber = newPage;
         paginationOptions.pageSize = pageSize;
@@ -77,13 +77,13 @@ app.service('transcriptome', [
 
   var unpack = function(url) {
       $http.get(url)
-     .success (function(response){ 
+     .success (function(response){
         return [].concat.apply([], response.data);
      });
   };
   var getPage = function() {
 
-    
+
     var tot_url=  query.totsel +query.tottable +query.totwhere+ query.group+query.filter;
     var gene_url= query.baseurl + query.genesel + query.genewhere+ 'and%20t.gene_id%20in%20('+tot_url+ query.sorting+query.paging+')'+query.group;
     var trans_url = query.baseurl + query.transsel +query.transjoin +query.transwhere+'and%20t.gene_id%20in%20('+tot_url+ query.sorting+query.paging+')'+query.group;
@@ -92,41 +92,41 @@ app.service('transcriptome', [
     var diff_url = query.baseurl + query.diffsel  +'where%20feature_name%20in%20('+tot_url+ query.sorting+query.paging+')';
 
     $http.get(query.baseurl+tot_url)
-     .success (function(response){ 
-        
+     .success (function(response){
+
         mygridOptions.totalItems = ([].concat.apply([], response.data)).length;
 
      });
 
-     
+
      trans_promise=$http.get(trans_url);
     $http.get(orf_url)
-     .success (function(response){ 
+     .success (function(response){
         orfdata = [].concat.apply([], response.data);
      });
      $http.get(pfam_url)
-     .success (function(response){ 
+     .success (function(response){
         pfamdata = [].concat.apply([], response.data);
      });
      $http.get(diff_url)
-     .success (function(response){ 
+     .success (function(response){
         diffdata = [].concat.apply([], response.data);
      });
      trans_promise.then(function(response){   transdata = [].concat.apply([], response.data);
      $http.get(gene_url)
-     .success (function(response){ 
+     .success (function(response){
         mygridOptions.data = [].concat.apply([], response.data);
         for(i = 0; i < mygridOptions.data.length; i++){
-            
+
         mygridOptions.data[i].subGridOptions1 = {
             enableVerticalScrollbars: 1,
-         
+
           columnDefs: [ {name:"trans_id", field:"trans_id"},{name:"t_len", field:"t_len"},{name:"x_hit", field:"x_hit"},{name:"x_qcov", field:"x_qcov"},
                      ,{name:"x_id", field:"x_id"},{name:"x_eval", field:"x_eval"},{name:"x_source", field:"x_source"} ],
           data: transdata.filter(function(trans){return trans.gene_id===mygridOptions.data[i].gene_id;})
           }
-       //      for(j = 0; j < this.gridOptions.data[i].subGridOptions.data.length; j++){  
-                       
+       //      for(j = 0; j < this.gridOptions.data[i].subGridOptions.data.length; j++){
+
                  mygridOptions.data[i].subGridOptions2 = {
                      //enableVerticalScrollbars: 0,
 
@@ -146,9 +146,9 @@ app.service('transcriptome', [
                 }
     //         }
         }
-        
+
      });//end get gene_url
-});//end promise    
+});//end promise
   };
  // getPage();
   return {filter: (function() {
@@ -157,13 +157,13 @@ app.service('transcriptome', [
     }
     else {
         query.filter='';
-    } 
+    }
     getPage();
     console.log('filtering');
   }),
   gridOptions: mygridOptions
   };
-  
+
 }
 ]);
 app.controller('MainCtrl',['$scope', 'transcriptome', function($scope,transcriptome) {
