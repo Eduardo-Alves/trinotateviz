@@ -171,7 +171,3 @@ app.controller('MainCtrl',['$scope', 'transcriptome', function($scope,transcript
     $scope.filter=transcriptome.filter;
 }
 ]);
-app.controller('SecondCtrl',['$scope', 'transcriptome', function($scope,transcriptome) {
-    $scope.gridOptions=transcriptome.gridOptions;
-}
-]);

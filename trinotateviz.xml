@@ -6,7 +6,7 @@
         <exit_code range="1:" />
     </stdio>
     <command><![CDATA[
-        sed "s@input_db@$db@" $__tool_directory__/trinotateviz.html > $output;
+        sed "s@input_db@${__app__.security.encode_id($db.id)}@" $__tool_directory__/trinotateviz.html > $output;
         mkdir ${output.files_path};
         cp $__tool_directory__/static/js/app.js ${output.files_path};
         cp $__tool_directory__/static/css/main.css ${output.files_path};
